@@ -9,7 +9,7 @@ var mongoose = require('mongoose'),
   On success (aka no error), you should send the listing(s) as JSON in the response.
 
   HINT: if you are struggling with implementing these functions, refer back to this tutorial 
-  from assignment 3 https://scotch.io/tutorials/using-mongoosejs-in-node-js-and-mongodb-applications
+  from assignment 3 github
  */
 
 /* Create a listing */
@@ -30,7 +30,7 @@ exports.create = function(req, res) {
   listing.save(function(err) {
     if(err) {
       console.log(err);
-      res.status(400).send(err);
+      res.status(404).send(err);
     } else {
       res.json(listing);
     }
@@ -74,7 +74,7 @@ exports.list = function(req, res) {
 exports.listingByID = function(req, res, next, id) {
   Listing.findById(id).exec(function(err, listing) {
     if(err) {
-      res.status(400).send(err);
+      res.status(404).send(err);
     } else {
       req.listing = listing;
       next();
