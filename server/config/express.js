@@ -6,6 +6,7 @@ var path = require('path'),
     config = require('./config'),
     listingsRouter = require('../routes/listings.server.routes'), 
     getCoordinates = require('../controllers/coordinates.server.controller.js');
+   
 
 module.exports.init = function() {
   //connect to database
@@ -34,7 +35,8 @@ module.exports.init = function() {
 
   /* go to homepage for all routes not specified */
   app.get('/', function(req,res){
-    res.send('../../client/index.html');
+    res.sendFile(path.join(__dirname, '../../client', 'index.html'));
+
   });
 
   return app;

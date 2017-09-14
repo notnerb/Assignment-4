@@ -63,7 +63,7 @@ exports.delete = function(req, res) {
 exports.list = function(req, res) {
   /* Your code here */
   Listing.find({}, function(err, listings){
-    console.log(listings);
+    res.json(listings);
 
    });
 };
