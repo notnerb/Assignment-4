@@ -62,6 +62,10 @@ exports.delete = function(req, res) {
 /* Retreive all the directory listings, sorted alphabetically by listing code */
 exports.list = function(req, res) {
   /* Your code here */
+  Listing.find({}, function(err, listings){
+    console.log(listings);
+
+   });
 };
 
 /* 
