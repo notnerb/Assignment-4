@@ -35,7 +35,7 @@ module.exports.init = function() {
   /* go to homepage for all routes not specified */
   app.get('/', function(req,res){
     res.send('../../client/index.html');
-  }
+  });
 
   return app;
 };  
