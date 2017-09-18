@@ -46,15 +46,45 @@ exports.read = function(req, res) {
 /* Update a listing */
 exports.update = function(req, res) {
   var listing = req.listing;
+  Listing.findById(listing._id, function(err, foundlisting){
+    console.log(foundlisting);
+    console.log(req.body);
+   foundlisting.name =  req.body.name;
+   foundlisting.code = req.body.code;
+   foundlisting.address = req.body.address
+   if(req.results) {
+    foundlisting.coordinates = {
+      latitude: req.results.lat, 
+      longitude: req.results.lng
+    };
+   }
+  foundlisting.save(function(err) {
+    if (err) throw err;
+    console.log(foundlisting);
+    console.log('User successfully updated!');
+
+    
+  });
+  
+  res.status(200).json(foundlisting);
+
+  });
 
   /* Replace the article's properties with the new properties found in req.body */
-  /* save the coordinates (located in req.results if there is an address property) */
+  /* save the coordinates (located in req.results if there is an address property
   /* Save the article */
+  
 };
 
 /* Delete a listing */
 exports.delete = function(req, res) {
   var listing = req.listing;
+  Listing.findOneAndRemove({code: listing.code}, function(err){
+    if (err) throw err;
+    console.log ('delete success');
+    
+   });
+  res.sendStatus(200);
 
   /* Remove the article */
 };
